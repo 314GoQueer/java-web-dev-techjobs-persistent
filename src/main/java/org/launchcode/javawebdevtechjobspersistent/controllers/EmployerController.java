@@ -16,6 +16,8 @@ public class EmployerController {
 
     @Autowired
     private EmployerRepository employerRepository;
+
+
     @RequestMapping("")
     public String index(Model model) {
 
@@ -36,12 +38,12 @@ public class EmployerController {
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
 
+
         if (errors.hasErrors()) {
             return "employers/add";
         }
 
-
-employerRepository.save(newEmployer);
+        employerRepository.save(newEmployer);
 
         return "redirect:";
     }
