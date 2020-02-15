@@ -14,9 +14,10 @@ public class Employer extends AbstractEntity {
     @Size(min = 2, max = 50, message = "Location must be between 2 and 50 characters.")
     @NotBlank
     private String location;
+
     @OneToMany
-    @JoinColumn
-    private List<Job> jobs = new ArrayList<Job>();
+    @JoinColumn(name = "employer_id")
+    private List<Job> jobs = new ArrayList<>();
 
     //no args constructor
     public Employer(){}

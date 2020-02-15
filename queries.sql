@@ -8,3 +8,5 @@ SELECT name from employer where location="St. Louis";
 DROP TABLE job;
 
 ## Part 4: Test it with SQL
+SELECT name, description from skill
+INNER join job_skills on skill.id = job_skills.skills_id

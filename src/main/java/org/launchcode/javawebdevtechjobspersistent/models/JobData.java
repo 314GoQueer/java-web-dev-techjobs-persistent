@@ -50,7 +50,7 @@ public class JobData {
         if (fieldName.equals("name")){
             theValue = job.getName();
         } else if (fieldName.equals("employer")){
-            theValue = job.getEmployer().getName();
+            theValue = job.getEmployer().toString();
         } else {
 //            Added toString() to fix error, see if this causes any issues down the line...
             theValue = job.getSkills().toString();
@@ -74,9 +74,9 @@ public class JobData {
 
             if (job.getName().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
-            } else if (job.getEmployer().getName().toLowerCase().contains(value.toLowerCase())) {
+            } else if (job.getEmployer().toString().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
-            } else if (job.getSkills().contains(value.toLowerCase())) {
+            } else if (job.getSkills().toString().contains(value.toLowerCase())) {
                 results.add(job);
             } else if (job.toString().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);

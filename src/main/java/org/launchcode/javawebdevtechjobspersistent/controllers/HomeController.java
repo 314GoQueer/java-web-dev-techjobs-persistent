@@ -33,6 +33,7 @@ public class HomeController {
     public String index(Model model) {
 
         model.addAttribute("title", "My Jobs");
+        model.addAttribute("jobs", jobRepository.findAll());
 
         return "index";
     }
@@ -56,9 +57,14 @@ public class HomeController {
             return "add";
         }
 
-        if (employerRepository.findById(employerId).isPresent()) {
-            newJob.setEmployer(employerRepository.findById(employerId).get());
+        Optional optionalEmployer = employerRepository.findById(employerId);
+        if (optionalEmployer.isPresent()) {
+            Employer employer = (Employer) optionalEmployer.get();
+            newJob.setEmployer(employer);
         }
+//        if (employerRepository.findById(employerId).isPresent()) {
+//            newJob.setEmployer(employerRepository.findById(employerId).get());
+//        }
 //        System.out.println(newJob.getEmployer().getId());
 //        System.out.println(newJob.getEmployer().getName());
 //        System.out.println(newJob.getEmployer().getLocation());
@@ -76,9 +82,9 @@ public class HomeController {
     public String displayViewJob(Model model, @PathVariable int jobId) {
 
         Optional optJob = jobRepository.findById(jobId);
-        if (optJob.isPresent()) {
-            Job job = (Job) optJob.get();
-            model.addAttribute("job", job);
+            if (optJob.isPresent()) {
+                Job job = (Job) optJob.get();
+                model.addAttribute("job", job);
             return "view";
         } else {
             return "redirect:../";
